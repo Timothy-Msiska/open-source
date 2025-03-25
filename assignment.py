@@ -1,5 +1,4 @@
 import bisect
-import heapq
 
 def main():
     # Initial array
@@ -23,4 +22,5 @@ def main():
     bisect.insort(x, 6)
     print("Array after inserting 6:", x)
 
-
+if __name__ == "__main__":
+    main()
