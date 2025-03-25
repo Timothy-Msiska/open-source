@@ -1,26 +1,20 @@
-import bisect
-
 def main():
-    # Initial array
-    x = [3, 1, 5, 2, 4]
+    # Array with exactly 5 elements where a pair sums to 9
+    x = [3, 6, 5, 2, 4]  # 3 + 6 = 9
 
-    # Sort the array (O(n log n))
-    x.sort()
-    print("Sorted Array:", x)
+    print("Original Array:", x)
 
-    # Efficient search using Binary Search (O(log n))
-    def search(arr, target):
-        index = bisect.bisect_left(arr, target)
-        if index < len(arr) and arr[index] == target:
-            return f"Element {target} found at index {index}"
-        else:
-            return f"Element {target} not found"
+    # Efficient search using HashSet (O(n))
+    def find_pair_with_sum(arr, target_sum):
+        seen = set()  # HashSet for storing elements
+        for num in arr:
+            complement = target_sum - num  # Find the required number
+            if complement in seen:
+                return f"Pair found: {num} + {complement} = {target_sum}"
+            seen.add(num)  # Store the number in HashSet
+        return "No pair found"
 
-    print(search(x, 5))  # Search for 5
-
-    # Insert element efficiently while maintaining order (O(n))
-    bisect.insort(x, 6)
-    print("Array after inserting 6:", x)
+    print(find_pair_with_sum(x, 9))
 
 if __name__ == "__main__":
     main()
